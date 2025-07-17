@@ -1,0 +1,15 @@
+{
+    "configurations":
+    [
+        {
+            "name"            : "c-toolkit config",
+            "includePath"     : [ "${workspaceFolder}/**" ],
+            "compilerPath"    : "/c/Users/Ranvir/scoop/apps/gcc/current/bin/g++.exe",
+            "cStandard"       : "c11",
+            "cppStandard"     : "c++11",
+            "intelliSenseMode": "windows-gcc-x64",
+            "compileCommands" : "build/compile_commands.json"
+        }
+    ],
+    "version": 4
+}

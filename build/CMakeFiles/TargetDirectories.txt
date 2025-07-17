@@ -1,0 +1,3 @@
+C:/Users/Ranvir/OneDrive/Desktop/Library-Management-System/build/CMakeFiles/Library-Management-System.dir
+C:/Users/Ranvir/OneDrive/Desktop/Library-Management-System/build/CMakeFiles/edit_cache.dir
+C:/Users/Ranvir/OneDrive/Desktop/Library-Management-System/build/CMakeFiles/rebuild_cache.dir

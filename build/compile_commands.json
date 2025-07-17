@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/Ranvir/OneDrive/Desktop/Library-Management-System/build",
+  "command": "C:\\Users\\Ranvir\\scoop\\apps\\gcc\\current\\bin\\g++.exe -Wall -Wextra -std=c++17 -Wall -Wextra -std=c++17 -O0 -g3 -o CMakeFiles\\Library-Management-System.dir\\main.cpp.obj -c C:\\Users\\Ranvir\\OneDrive\\Desktop\\Library-Management-System\\main.cpp",
+  "file": "C:\\Users\\Ranvir\\OneDrive\\Desktop\\Library-Management-System\\main.cpp",
+  "output": "CMakeFiles\\Library-Management-System.dir\\main.cpp.obj"
+}
+]
