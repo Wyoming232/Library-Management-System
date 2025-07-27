@@ -74,11 +74,13 @@ class Member {
     }
     void borrowBook(const Book& book) {
         m_borrowedBooks.push_back(book.m_isbn); // Store the book's ISBN
+        std::cout << m_name << " borrowed the book: " << book.m_title << std::endl;
     }
     void returnBook(const Book& book) {
         auto it = std::find(m_borrowedBooks.begin(), m_borrowedBooks.end(), book.m_isbn);
         if (it != m_borrowedBooks.end()) {
             m_borrowedBooks.erase(it);
+            std::cout << m_name << " returned the book: " << book.m_title << std::endl;
         } else {
             // Optional: Handle the case where the member tries to return a book they don't have.
             std::cout << "Error: " << m_name << " did not borrow this book." << std::endl;
@@ -181,42 +183,37 @@ int main() {
                 std::cout << "Enter publication year: ";
                 std::cin >> year;
                 
-                // **FIX**: Clear the input buffer after reading a number
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-                // This part remains the same, as the Library class handles the map insertion.
                 library.addBook(Book(title, author, isbn, year));
-                std::cout << "✅ Book added successfully!\n";
+                std::cout << "Book added successfully!\n";
                 break;
             }
-            case 2: { // Add New Member
+            case 2: {
                 std::string name, memberId;
                 std::cout << "Enter member name: ";
                 std::getline(std::cin, name);
                 std::cout << "Enter member ID: ";
                 std::getline(std::cin, memberId);
 
-                // The Library class handles the map insertion.
                 library.addMember(Member(name, memberId));
-                std::cout << "✅ Member added successfully!\n";
+                std::cout << "Member added successfully!\n";
                 break;
             }
-            case 3: { // Borrow a Book
+            case 3: {
                 std::string memberId, isbn;
                 std::cout << "Enter your member ID: ";
                 std::getline(std::cin, memberId);
                 std::cout << "Enter ISBN of the book to borrow: ";
                 std::getline(std::cin, isbn);
 
-                // **REFACTOR**: Use efficient map lookups via helper functions.
-                // These functions should use `unordered_map::find()` internally.
                 Member* member = library.findMemberById(memberId);
                 Book* book = library.findBookByIsbn(isbn);
 
                 if (member && book) {
                     library.borrowBook(*member, *book);
                 } else {
-                    std::cout << "❌ Error: Invalid Member ID or Book ISBN.\n";
+                    std::cout << "Error: Invalid Member ID or Book ISBN.\n";
                 }
                 break;
             }
@@ -227,8 +224,6 @@ int main() {
                 std::cout << "Enter ISBN of the book to return: ";
                 std::getline(std::cin, isbn);
 
-                // **REFACTOR**: Replaced the inefficient vector-based linear search
-                // with the same efficient map lookup used for borrowing.
                 Member* member = library.findMemberById(memberId);
                 Book* book = library.findBookByIsbn(isbn);
 
@@ -236,26 +231,14 @@ int main() {
                     library.returnBook(*member, *book);
                     // Success message moved inside the Library::returnBook method for better logic.
                 } else {
-                    std::cout << "❌ Error: Invalid Member ID or Book ISBN.\n";
+                    std::cout << "Error: Invalid Member ID or Book ISBN.\n";
                 }
                 break;
-            }/* 
-            case 5: // List All Books
-                std::cout << "\n--- Library Books ---\n";
-                // **REFACTOR**: Delegate printing to a dedicated library method
-                // for better encapsulation. This method iterates over the map.
-                library.printAllBooks();
-                break;
-            case 6: // List All Members
-                std::cout << "\n--- Library Members ---\n";
-                // This was already well-designed; kept for consistency.
-                library.printAllMembers();
-                break; */
-            case 5: // Exit
+            }case 5: // Exit
                 std::cout << "Goodbye!\n";
                 return 0;
             default:
-                std::cout << "❌ Invalid choice. Please try again.\n";
+                std::cout << "Invalid choice. Please try again.\n";
                 break;
         }
     }
